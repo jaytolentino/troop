@@ -46,8 +46,24 @@ public class MessageActionsFragment extends Fragment{
         TroopClient.sendLove(new Callback<Results>() {
             @Override
             public void success(Results results, Response response) {
-                uiUtils.showToast(R.string.love_toast);
+                uiUtils.showToast(R.string.love_success_toast);
                 soundManager.playLove();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                uiUtils.showToast(R.string.error_toast);
+            }
+        });
+    }
+
+    @OnClick(R.id.btnHelp)
+    public void onSendHelp() {
+        TroopClient.sendHelp(new Callback<Results>() {
+            @Override
+            public void success(Results results, Response response) {
+                uiUtils.showToast(R.string.help_success_toast);
+                soundManager.playHelp();
             }
 
             @Override

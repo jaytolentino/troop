@@ -27,4 +27,8 @@ public class TroopClient {
         getService().postLove(callback);
     }
 
+    public static void sendHelp(Callback<Results> callback) {
+        getService().postHelp(callback);
+    }
+
 }
