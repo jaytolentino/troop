@@ -5,6 +5,14 @@
     style="@style/Splash"
     tools:context="com.linkedladies.troop.activities.LoginActivity">
 
+    <Button
+        android:id="@+id/btnSkip"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_large"
+        android:layout_gravity="bottom"
+        android:text="@string/action_skip"
+        style="@style/Button.Large" />
+
     <FrameLayout
         android:id="@+id/flLoginContainer"
         android:layout_width="match_parent"
