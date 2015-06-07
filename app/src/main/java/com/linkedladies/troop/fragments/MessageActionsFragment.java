@@ -10,9 +10,14 @@ import android.view.ViewGroup;
 import com.linkedladies.troop.R;
 import com.linkedladies.troop.helpers.SoundManager;
 import com.linkedladies.troop.helpers.UIUtils;
+import com.linkedladies.troop.models.Results;
+import com.linkedladies.troop.net.TroopClient;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class MessageActionsFragment extends Fragment{
 
@@ -38,8 +43,18 @@ public class MessageActionsFragment extends Fragment{
 
     @OnClick(R.id.btnLove)
     public void onSendLove() {
-        uiUtils.showToast(R.string.love_toast);
-        soundManager.playLove();
+        TroopClient.sendLove(new Callback<Results>() {
+            @Override
+            public void success(Results results, Response response) {
+                uiUtils.showToast(R.string.love_toast);
+                soundManager.playLove();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                uiUtils.showToast(R.string.error_toast);
+            }
+        });
     }
 
 }
