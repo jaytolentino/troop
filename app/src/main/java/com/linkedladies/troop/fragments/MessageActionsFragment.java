@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.linkedladies.troop.R;
 import com.linkedladies.troop.helpers.SoundManager;
 import com.linkedladies.troop.helpers.UIUtils;
+import com.linkedladies.troop.models.Message;
 import com.linkedladies.troop.models.Results;
 import com.linkedladies.troop.net.TroopClient;
 
@@ -23,14 +24,29 @@ public class MessageActionsFragment extends Fragment{
 
     private UIUtils uiUtils;
     private SoundManager soundManager;
+    private MessageActionListener listener;
 
     public MessageActionsFragment() {}
+
+    public interface MessageActionListener {
+        public void onLoveSuccess(Message message);
+    }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         uiUtils = new UIUtils(activity);
         soundManager = new SoundManager(activity);
+
+        if (activity instanceof MessageActionListener) {
+            listener = (MessageActionListener) activity;
+        } else {
+            throw new ClassCastException(
+                    activity.getClass().getSimpleName()
+                    + " must implement "
+                    + MessageActionListener.class.getSimpleName()
+            );
+        }
     }
 
     @Override
@@ -48,6 +64,7 @@ public class MessageActionsFragment extends Fragment{
             public void success(Results results, Response response) {
                 uiUtils.showToast(R.string.love_success_toast);
                 soundManager.playLove();
+                listener.onLoveSuccess(results.getMessage());
             }
 
             @Override

@@ -7,6 +7,11 @@
     tools:context="com.linkedladies.troop.activities.SessionActivity">
 
     <FrameLayout
+        android:id="@+id/flMessagesList"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <FrameLayout
         android:id="@+id/flMessageActions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

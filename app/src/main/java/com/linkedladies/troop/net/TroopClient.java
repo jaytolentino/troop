@@ -7,7 +7,7 @@ import retrofit.RestAdapter;
 
 public class TroopClient {
 
-    private static final String BASE_URL = "http://troop.herokuapp.com/v1.0";
+    private static final String BASE_URL = "http://troop-api.herokuapp.com/troop/api";
 
     private static TroopService troopService;
 
@@ -21,6 +21,10 @@ public class TroopClient {
             troopService = restAdapter.create(TroopService.class);
         }
         return troopService;
+    }
+
+    public static void getMessages(Callback<Results> callback) {
+        getService().getMessages(callback);
     }
 
     public static void sendLove(Callback<Results> callback) {
