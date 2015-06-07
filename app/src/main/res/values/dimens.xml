@@ -1,0 +1,12 @@
+<resources>
+    <!-- SPACING -->
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+
+    <!-- TEXT SIZES -->
+    <dimen name="text_large_tagline">32sp</dimen>
+    <dimen name="text_large_app_name">85sp</dimen>
+    <dimen name="text_large_headline">24sp</dimen>
+
+</resources>

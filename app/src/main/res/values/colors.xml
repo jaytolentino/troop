@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="app_color">#00E9FF</color>
+    <color name="app_color_dark">#00919F</color>
+    <color name="text_app_dark">#00555D</color>
+
+    <color name="spotify_main">#81b71a</color>
+    <color name="spotify_text">#33691E</color>
+
+    <color name="online_green">#3c983b</color>
+    <color name="button_bg">#222222</color>
+    <color name="text_black">#111111</color>
+    <color name="text_light_gray">#777777</color>
+    <color name="text_white">#ffffff</color>
+    <color name="dark_bg">#333333</color>
+</resources>

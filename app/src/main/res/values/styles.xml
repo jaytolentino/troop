@@ -1,8 +1,54 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <item name="colorAccent">@color/app_color</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+
+        <item name="android:textColorPrimary">@color/text_white</item>
+    </style>
+
+    <style name="Splash" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/app_color</item>
+        <item name="colorPrimaryDark">@color/app_color_dark</item>
+        <item name="colorAccent">@color/app_color</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textColorSecondary">@color/text_light_gray</item>
+
+        <item name="android:background">@color/primary_dark_material_dark</item>
+    </style>
+
+    <!-- Text Styling -->
+    <style name="Text.AppName" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:textSize">@dimen/text_large_app_name</item>
+        <item name="android:textColor">@color/app_color</item>
+    </style>
+    <style name="Text.Tagline" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">@dimen/text_large_tagline</item>
+    </style>
+    <style name="Text.Headline" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/text_light_gray</item>
+        <item name="android:textSize">@dimen/text_large_headline</item>
+    </style>
+
+    <!-- Component Styling -->
+    <style name="Button" parent="Widget.AppCompat.Button">
+        <item name="android:fontFamily">sans-serif-regular</item>
+    </style>
+    <style name="Button.Large" parent="Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">@dimen/spacing_medium</item>
+        <item name="android:layout_marginRight">@dimen/spacing_medium</item>
+        <item name="android:background">@drawable/primary_button_selector</item>
+        <item name="android:textColor">@color/text_app_dark</item>
+    </style>
+    <style name="Button.SpotifyLogin" parent="Button.Large">
+        <item name="android:background">@color/spotify_main</item>
+        <item name="android:textColor">@color/spotify_text</item>
     </style>
 
 </resources>

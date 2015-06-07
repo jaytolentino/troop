@@ -1,0 +1,34 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.linkedladies.troop.activities.SplashActivity"
+    android:orientation="vertical"
+    style="@style/Splash"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/tvAppName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:gravity="center"
+        style="@style/Text.AppName" />
+
+    <TextView
+        android:id="@+id/tvTagline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tagline"
+        style="@style/Text.Tagline"
+        android:gravity="center" />
+
+    <Button
+        android:id="@+id/btnGetStarted"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_medium"
+        style="@style/Button.Large"
+        android:text="@string/action_get_started" />
+
+</LinearLayout>

@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Troop</string>
+
+    <!-- Actions -->
+    <string name="action_get_started">Get Started</string>
+    <string name="action_spotify_login">Login with Spotify</string>
+
+    <string name="title_activity_splash"></string>
+    <string name="title_activity_login"></string>
+    <string name="tagline">Get Fit with Friends</string>
+
+    <string name="choose_music_login">Choose Your Music Provider</string>
+
+    <string name="success_toast">Success</string>
+    <string name="error_toast">Error. Please try again in a moment.</string>
+
 </resources>
