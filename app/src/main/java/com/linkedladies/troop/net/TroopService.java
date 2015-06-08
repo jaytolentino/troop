@@ -17,7 +17,7 @@ interface TroopService {
     static final String LOVE_ENDPOINT = "/love";
     static final String HELP_ENDPOINT = "/help";
     static final String SUPPORT_ENDPOINT = "/support";
-    static final String RECOVER_ENDPOINT = "/support";
+    static final String RECOVER_ENDPOINT = "/recover";
 
     static final String SESSION_RESET_ENDPOINT = "/reset";
     static final String FRIENDS_ENDPOINT = "/friends";
