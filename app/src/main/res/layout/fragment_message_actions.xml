@@ -6,16 +6,28 @@
     android:gravity="center"
     tools:context="com.linkedladies.troop.fragments.MessageActionsFragment">
 
-    <ImageButton
+    <Button
         android:id="@+id/btnLove"
-        android:src="@android:drawable/ic_menu_send"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:text="@string/action_love" />
 
-    <ImageButton
+    <Button
         android:id="@+id/btnHelp"
-        android:src="@android:drawable/ic_menu_help"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:text="@string/action_help" />
+
+    <Button
+        android:id="@+id/btnSupport"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="@string/action_support" />
+
+    <Button
+        android:id="@+id/btnRecover"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="@string/action_recover" />
 
 </LinearLayout>

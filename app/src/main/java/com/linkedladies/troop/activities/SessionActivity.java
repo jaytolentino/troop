@@ -7,13 +7,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.linkedladies.troop.R;
+import com.linkedladies.troop.fragments.FriendListFragment;
 import com.linkedladies.troop.fragments.MessageActionsFragment;
-import com.linkedladies.troop.fragments.MessageListFragment;
-import com.linkedladies.troop.models.Message;
+import com.linkedladies.troop.helpers.UIUtils;
+import com.linkedladies.troop.models.Friend;
+import com.linkedladies.troop.models.Results;
+import com.linkedladies.troop.net.TroopClient;
+
+import java.util.List;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class SessionActivity extends AppCompatActivity implements MessageActionsFragment.MessageActionListener{
 
-    private MessageListFragment messageListFragment;
+    private FriendListFragment friendListFragment;
     private MessageActionsFragment messageActionsFragment;
 
     @Override
@@ -21,11 +30,11 @@ public class SessionActivity extends AppCompatActivity implements MessageActions
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session);
 
-        messageListFragment = new MessageListFragment();
+        friendListFragment = new FriendListFragment();
         messageActionsFragment = new MessageActionsFragment();
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.flMessagesList, messageListFragment);
+        ft.replace(R.id.flFriendsList, friendListFragment);
         ft.replace(R.id.flMessageActions, messageActionsFragment);
         ft.commit();
     }
@@ -48,7 +57,23 @@ public class SessionActivity extends AppCompatActivity implements MessageActions
     }
 
     @Override
-    public void onLoveSuccess(Message message) {
-        messageListFragment.addMessage(message);
+    public void onFriendsUpdated(List<Friend> updatedFriends) {
+        friendListFragment.updateFriends(updatedFriends);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        TroopClient.closeSession(new Callback<Results>() {
+            @Override
+            public void success(Results results, Response response) {
+                /* NOP */
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                new UIUtils(SessionActivity.this).showToast(R.string.error_toast);
+            }
+        });
     }
 }

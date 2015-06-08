@@ -8,11 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.linkedladies.troop.R;
+import com.linkedladies.troop.app.User;
 import com.linkedladies.troop.helpers.SoundManager;
 import com.linkedladies.troop.helpers.UIUtils;
-import com.linkedladies.troop.models.Message;
+import com.linkedladies.troop.models.Friend;
 import com.linkedladies.troop.models.Results;
 import com.linkedladies.troop.net.TroopClient;
+
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -20,7 +23,10 @@ import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class MessageActionsFragment extends Fragment{
+public class MessageActionsFragment extends Fragment {
+
+//    @InjectView(R.id.btnActionHandler)
+//    Button btnActionHandler;
 
     private UIUtils uiUtils;
     private SoundManager soundManager;
@@ -29,7 +35,7 @@ public class MessageActionsFragment extends Fragment{
     public MessageActionsFragment() {}
 
     public interface MessageActionListener {
-        public void onLoveSuccess(Message message);
+        public void onFriendsUpdated(List<Friend> updatedFriends);
     }
 
     @Override
@@ -58,13 +64,17 @@ public class MessageActionsFragment extends Fragment{
     }
 
     @OnClick(R.id.btnLove)
-    public void onSendLove() {
-        TroopClient.sendLove(new Callback<Results>() {
+    public void sendLove() {
+        TroopClient.sendLove(User.getInstance().asFriend(), new Callback<Results>() {
             @Override
             public void success(Results results, Response response) {
-                uiUtils.showToast(R.string.love_success_toast);
                 soundManager.playLove();
-                listener.onLoveSuccess(results.getMessage());
+                uiUtils.showToast(R.string.love_success_toast);
+
+                List<Friend> updatedFriends = results.getFriends();
+                if (updatedFriends != null && updatedFriends.size() > 0) {
+                    listener.onFriendsUpdated(results.getFriends());
+                }
             }
 
             @Override
@@ -75,12 +85,59 @@ public class MessageActionsFragment extends Fragment{
     }
 
     @OnClick(R.id.btnHelp)
-    public void onSendHelp() {
-        TroopClient.sendHelp(new Callback<Results>() {
+    public void sendHelp() {
+        TroopClient.sendHelp(User.getInstance().asFriend(), new Callback<Results>() {
             @Override
             public void success(Results results, Response response) {
-                uiUtils.showToast(R.string.help_success_toast);
                 soundManager.playHelp();
+                uiUtils.showToast(R.string.help_success_toast);
+
+                List<Friend> updatedFriends = results.getFriends();
+                if (updatedFriends != null && updatedFriends.size() > 0) {
+                    listener.onFriendsUpdated(results.getFriends());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                uiUtils.showToast(R.string.error_toast);
+            }
+        });
+    }
+
+    @OnClick(R.id.btnSupport)
+    public void sendSupport() {
+        TroopClient.sendSupport(User.getInstance().asFriend(), new Callback<Results>() {
+            @Override
+            public void success(Results results, Response response) {
+                soundManager.playHelp();
+                uiUtils.showToast(R.string.help_success_toast);
+
+                List<Friend> updatedFriends = results.getFriends();
+                if (updatedFriends != null && updatedFriends.size() > 0) {
+                    listener.onFriendsUpdated(results.getFriends());
+                }
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                uiUtils.showToast(R.string.error_toast);
+            }
+        });
+    }
+
+    @OnClick(R.id.btnRecover)
+    public void sendRecover() {
+        TroopClient.sendRecover(User.getInstance().asFriend(), new Callback<Results>() {
+            @Override
+            public void success(Results results, Response response) {
+                soundManager.playHelp();
+                uiUtils.showToast(R.string.help_success_toast);
+
+                List<Friend> updatedFriends = results.getFriends();
+                if (updatedFriends != null && updatedFriends.size() > 0) {
+                    listener.onFriendsUpdated(results.getFriends());
+                }
             }
 
             @Override

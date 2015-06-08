@@ -9,4 +9,6 @@
     <dimen name="text_large_app_name">85sp</dimen>
     <dimen name="text_large_headline">24sp</dimen>
 
+    <!-- SIZING -->
+    <dimen name="size_user_image">150dp</dimen>
 </resources>

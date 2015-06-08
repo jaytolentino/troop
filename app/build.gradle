@@ -34,4 +34,6 @@ dependencies {
     compile 'com.spotify.sdk:spotify-auth:1.0.0-beta10@aar'
     compile 'com.spotify.sdk:spotify-player:1.0.0-beta10@aar'
     compile 'com.jakewharton:butterknife:6.1.0'
+    compile 'de.hdodenhof:circleimageview:1.3.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }
