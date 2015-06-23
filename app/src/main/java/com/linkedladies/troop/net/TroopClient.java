@@ -16,7 +16,7 @@ public class TroopClient {
         if (troopService == null) {
             RestAdapter restAdapter = new RestAdapter.Builder()
                     .setEndpoint(BASE_URL)
-                    .setLogLevel(RestAdapter.LogLevel.HEADERS)
+                    .setLogLevel(RestAdapter.LogLevel.FULL)
                     .build();
 
             troopService = restAdapter.create(TroopService.class);

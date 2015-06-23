@@ -23,5 +23,7 @@
     <string name="error_toast">Error. Please try again in a moment.</string>
     <string name="love_success_toast">Love Sent</string>
     <string name="help_success_toast">Asked for Help!</string>
+    <string name="support_success_toast">Support Sent</string>
+    <string name="recover_success_toast">You Recovered!</string>
 
 </resources>

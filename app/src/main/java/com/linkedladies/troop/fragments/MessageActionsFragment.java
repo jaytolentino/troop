@@ -3,12 +3,15 @@ package com.linkedladies.troop.fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.linkedladies.troop.R;
 import com.linkedladies.troop.app.User;
+import com.linkedladies.troop.helpers.Constants;
 import com.linkedladies.troop.helpers.SoundManager;
 import com.linkedladies.troop.helpers.UIUtils;
 import com.linkedladies.troop.models.Friend;
@@ -18,6 +21,7 @@ import com.linkedladies.troop.net.TroopClient;
 import java.util.List;
 
 import butterknife.ButterKnife;
+import butterknife.InjectView;
 import butterknife.OnClick;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -25,8 +29,17 @@ import retrofit.client.Response;
 
 public class MessageActionsFragment extends Fragment {
 
-//    @InjectView(R.id.btnActionHandler)
-//    Button btnActionHandler;
+    @InjectView(R.id.btnLove)
+    Button btnLove;
+
+    @InjectView(R.id.btnHelp)
+    Button btnHelp;
+
+    @InjectView(R.id.btnSupport)
+    Button btnSupport;
+
+    @InjectView(R.id.btnRecover)
+    Button btnRecover;
 
     private UIUtils uiUtils;
     private SoundManager soundManager;
@@ -74,6 +87,9 @@ public class MessageActionsFragment extends Fragment {
                 List<Friend> updatedFriends = results.getFriends();
                 if (updatedFriends != null && updatedFriends.size() > 0) {
                     listener.onFriendsUpdated(results.getFriends());
+
+                    // TODO remove; currently always using 1st friend as logged-in user
+                    updateActions(updatedFriends.get(0).getState());
                 }
             }
 
@@ -95,6 +111,9 @@ public class MessageActionsFragment extends Fragment {
                 List<Friend> updatedFriends = results.getFriends();
                 if (updatedFriends != null && updatedFriends.size() > 0) {
                     listener.onFriendsUpdated(results.getFriends());
+
+                    // TODO remove; currently always using 1st friend as logged-in user
+                    updateActions(updatedFriends.get(0).getState());
                 }
             }
 
@@ -111,11 +130,14 @@ public class MessageActionsFragment extends Fragment {
             @Override
             public void success(Results results, Response response) {
                 soundManager.playHelp();
-                uiUtils.showToast(R.string.help_success_toast);
+                uiUtils.showToast(R.string.support_success_toast);
 
                 List<Friend> updatedFriends = results.getFriends();
                 if (updatedFriends != null && updatedFriends.size() > 0) {
                     listener.onFriendsUpdated(results.getFriends());
+
+                    // TODO remove; currently always using 1st friend as logged-in user
+                    updateActions(updatedFriends.get(0).getState());
                 }
             }
 
@@ -132,11 +154,14 @@ public class MessageActionsFragment extends Fragment {
             @Override
             public void success(Results results, Response response) {
                 soundManager.playHelp();
-                uiUtils.showToast(R.string.help_success_toast);
+                uiUtils.showToast(R.string.recover_success_toast);
 
                 List<Friend> updatedFriends = results.getFriends();
                 if (updatedFriends != null && updatedFriends.size() > 0) {
                     listener.onFriendsUpdated(results.getFriends());
+
+                    // TODO remove; currently always using 1st friend as logged-in user
+                    updateActions(updatedFriends.get(0).getState());
                 }
             }
 
@@ -145,6 +170,50 @@ public class MessageActionsFragment extends Fragment {
                 uiUtils.showToast(R.string.error_toast);
             }
         });
+    }
+
+    // TODO consider moving this logic to the server
+    private void updateActions(Constants.UserState userState) {
+        switch (userState) {
+            case NORMAL:
+                btnLove.setEnabled(true);
+                btnHelp.setEnabled(true);
+                btnSupport.setEnabled(false);
+                btnRecover.setEnabled(false);
+                break;
+            case REQUESTS_SUPPORT:
+                btnLove.setEnabled(true);
+                btnHelp.setEnabled(false);
+                btnSupport.setEnabled(false);
+                btnRecover.setEnabled(false);
+                break;
+            case UNDECIDED:
+                btnLove.setEnabled(true);
+                btnHelp.setEnabled(false);
+                btnSupport.setEnabled(true);
+                btnRecover.setEnabled(false);
+                break;
+            case SUPPORTS:
+                btnLove.setEnabled(true);
+                btnHelp.setEnabled(false);
+                btnSupport.setEnabled(false);
+                btnRecover.setEnabled(false);
+                break;
+            case RECOVERABLE:
+                btnLove.setEnabled(true);
+                btnHelp.setEnabled(false);
+                btnSupport.setEnabled(false);
+                btnRecover.setEnabled(true);
+                break;
+            default:
+                Log.e(MessageActionsFragment.class.getSimpleName(), "Unrecognized user state: " + userState.toString());
+                btnLove.setEnabled(true);
+                btnHelp.setEnabled(true);
+                btnSupport.setEnabled(false);
+                btnRecover.setEnabled(false);
+                break;
+
+        }
     }
 
 }
