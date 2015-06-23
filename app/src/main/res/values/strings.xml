@@ -10,6 +10,7 @@
     <string name="action_support">Support</string>
     <string name="action_recover">Recover</string>
     <string name="action_settings">Settings</string>
+    <string name="menu_messages">History</string>
 
     <string name="title_activity_splash"></string>
     <string name="title_activity_login"></string>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.linkedladies.troop.fragments.ActiveSessionFragment"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvFriends"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnLove"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/action_love" />
+
+        <Button
+            android:id="@+id/btnHelp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/action_help" />
+
+        <Button
+            android:id="@+id/btnSupport"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/action_support" />
+
+        <Button
+            android:id="@+id/btnRecover"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/action_recover" />
+
+    </LinearLayout>
+
+
+</FrameLayout>

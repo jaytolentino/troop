@@ -7,35 +7,28 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.linkedladies.troop.R;
-import com.linkedladies.troop.fragments.FriendListFragment;
-import com.linkedladies.troop.fragments.MessageActionsFragment;
+import com.linkedladies.troop.fragments.ActiveSessionFragment;
 import com.linkedladies.troop.helpers.UIUtils;
-import com.linkedladies.troop.models.Friend;
 import com.linkedladies.troop.models.Results;
 import com.linkedladies.troop.net.TroopClient;
-
-import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class SessionActivity extends AppCompatActivity implements MessageActionsFragment.MessageActionListener{
+public class SessionActivity extends AppCompatActivity {
 
-    private FriendListFragment friendListFragment;
-    private MessageActionsFragment messageActionsFragment;
+    private ActiveSessionFragment activeSessionFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session);
 
-        friendListFragment = new FriendListFragment();
-        messageActionsFragment = new MessageActionsFragment();
+        activeSessionFragment = new ActiveSessionFragment();
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.flFriendsList, friendListFragment);
-        ft.replace(R.id.flMessageActions, messageActionsFragment);
+        ft.replace(R.id.flMainContainer, activeSessionFragment);
         ft.commit();
     }
 
@@ -49,16 +42,11 @@ public class SessionActivity extends AppCompatActivity implements MessageActions
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
+        if (id == R.id.menu_messages) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onFriendsUpdated(List<Friend> updatedFriends) {
-        friendListFragment.updateFriends(updatedFriends);
     }
 
     @Override

@@ -7,14 +7,8 @@
     tools:context="com.linkedladies.troop.activities.SessionActivity">
 
     <FrameLayout
-        android:id="@+id/flFriendsList"
+        android:id="@+id/flMainContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <FrameLayout
-        android:id="@+id/flMessageActions"
-        android:layout_gravity="bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
 </FrameLayout>
