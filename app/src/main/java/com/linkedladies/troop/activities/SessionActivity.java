@@ -8,6 +8,7 @@ import android.view.MenuItem;
 
 import com.linkedladies.troop.R;
 import com.linkedladies.troop.fragments.ActiveSessionFragment;
+import com.linkedladies.troop.fragments.MessageListFragment;
 import com.linkedladies.troop.helpers.UIUtils;
 import com.linkedladies.troop.models.Results;
 import com.linkedladies.troop.net.TroopClient;
@@ -19,6 +20,7 @@ import retrofit.client.Response;
 public class SessionActivity extends AppCompatActivity {
 
     private ActiveSessionFragment activeSessionFragment;
+    private MessageListFragment messageListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +28,13 @@ public class SessionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_session);
 
         activeSessionFragment = new ActiveSessionFragment();
+        messageListFragment = new MessageListFragment();
+
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.flMainContainer, activeSessionFragment);
+        ft.add(R.id.flMainContainer, messageListFragment);
+        ft.hide(messageListFragment);
+        ft.add(R.id.flMainContainer, activeSessionFragment);
         ft.commit();
     }
 
@@ -43,6 +49,15 @@ public class SessionActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menu_messages) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            if (activeSessionFragment.isHidden()) {
+                ft.show(activeSessionFragment);
+                ft.hide(messageListFragment);
+            } else {
+                ft.hide(activeSessionFragment);
+                ft.show(messageListFragment);
+            }
+            ft.commit();
             return true;
         }
 

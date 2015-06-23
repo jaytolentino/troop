@@ -54,12 +54,23 @@ public class MessageListFragment extends Fragment{
         rvMessages.setLayoutManager(layoutManager);
 
         messages = new ArrayList<>();
+
+        return parent;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         TroopClient.getMessages(new Callback<Results>() {
             @Override
             public void success(Results results, Response response) {
-                messages.addAll(results.getChatRoom());
-                messagesAdapter = new MessagesAdapter(messages);
-                rvMessages.setAdapter(messagesAdapter);
+                messages.clear();
+                messages.addAll(results.getMessages());
+
+                if (messagesAdapter == null) {
+                    messagesAdapter = new MessagesAdapter(messages);
+                    rvMessages.setAdapter(messagesAdapter);
+                }
             }
 
             @Override
@@ -67,12 +78,5 @@ public class MessageListFragment extends Fragment{
                 uiUtils.showToast(R.string.error_toast);
             }
         });
-
-        return parent;
-    }
-
-    public void addMessage(Message message) {
-        messages.add(message);
-        messagesAdapter.notifyDataSetChanged();
     }
 }

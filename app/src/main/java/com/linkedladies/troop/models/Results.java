@@ -6,7 +6,7 @@ public class Results {
 
     private List<Friend> friends;
 
-    private List<Message> chatRoom;
+    private List<Message> messages;
 
     private Message message;
 
@@ -14,8 +14,8 @@ public class Results {
         return friends;
     }
 
-    public List<Message> getChatRoom() {
-        return chatRoom;
+    public List<Message> getMessages() {
+        return messages;
     }
 
     public Message getMessage() {

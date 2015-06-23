@@ -27,7 +27,7 @@ interface TroopService {
     @GET(FRIENDS_ENDPOINT)
     void getSessionFriends(Callback<Results> callback);
 
-    @GET(MESSAGE_ENDPOINT + MESSAGES_ENDPOINT)
+    @GET(MESSAGES_ENDPOINT)
     void getMessages(Callback<Results> callback);
 
     @POST(MESSAGE_ENDPOINT + LOVE_ENDPOINT)
