@@ -33,7 +33,6 @@ public class SessionActivity extends AppCompatActivity {
         activeSessionFragment = new ActiveSessionFragment();
         messageListFragment = new MessageListFragment();
 
-
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.flMainContainer, messageListFragment);
         ft.hide(messageListFragment);
@@ -52,12 +51,17 @@ public class SessionActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menu_messages) {
+
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
             if (activeSessionFragment.isHidden()) {
+
                 ft.show(activeSessionFragment);
                 ft.hide(messageListFragment);
                 ft.commit();
+
             } else {
+
                 ft.hide(activeSessionFragment);
                 ft.show(messageListFragment);
                 ft.commit();

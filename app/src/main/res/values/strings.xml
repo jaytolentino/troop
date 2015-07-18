@@ -19,6 +19,7 @@
     <string name="tagline">Get Fit with Friends</string>
 
     <string name="choose_music_login">Choose Your Music Provider</string>
+    <string name="empty_message_list">No Messages</string>
 
     <string name="success_toast">Success</string>
     <string name="error_toast">Error. Please try again in a moment.</string>
