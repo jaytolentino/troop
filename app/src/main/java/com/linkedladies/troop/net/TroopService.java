@@ -14,15 +14,15 @@ interface TroopService {
     /**
      * Action Endpoints
      */
-    static final String LOVE_ENDPOINT = "/love";
-    static final String HELP_ENDPOINT = "/help";
-    static final String SUPPORT_ENDPOINT = "/support";
-    static final String RECOVER_ENDPOINT = "/recover";
+    String LOVE_ENDPOINT = "/love";
+    String HELP_ENDPOINT = "/help";
+    String SUPPORT_ENDPOINT = "/support";
+    String RECOVER_ENDPOINT = "/recover";
 
-    static final String SESSION_RESET_ENDPOINT = "/reset";
-    static final String FRIENDS_ENDPOINT = "/friends";
-    static final String MESSAGE_ENDPOINT = "/message";
-    static final String MESSAGES_ENDPOINT = "/messages";
+    String SESSION_RESET_ENDPOINT = "/reset";
+    String FRIENDS_ENDPOINT = "/friends";
+    String MESSAGE_ENDPOINT = "/message";
+    String MESSAGES_ENDPOINT = "/messages";
 
     @GET(FRIENDS_ENDPOINT)
     void getSessionFriends(Callback<Results> callback);

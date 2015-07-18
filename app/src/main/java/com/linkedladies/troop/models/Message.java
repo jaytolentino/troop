@@ -3,17 +3,22 @@ package com.linkedladies.troop.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Message implements Parcelable {
-    private String id;
-    private String title;
+
+    private String sender;
+    @SerializedName("message_type") private String messageType;
+    private String time;
 
     private Message(Parcel in) {
-        this.id = in.readString();
-        this.title = in.readString();
+        this.sender = in.readString();
+        this.messageType = in.readString();
+        this.time = in.readString();
     }
 
-    public String getTitle() {
-        return title;
+    public String getMessageType() {
+        return messageType;
     }
 
     @Override
@@ -23,8 +28,9 @@ public class Message implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id);
-        dest.writeString(title);
+        dest.writeString(sender);
+        dest.writeString(messageType);
+        dest.writeString(time);
     }
 
     public static final Creator CREATOR = new Creator() {

@@ -14,17 +14,12 @@ import com.linkedladies.troop.R;
 import com.linkedladies.troop.adapters.MessagesAdapter;
 import com.linkedladies.troop.helpers.UIUtils;
 import com.linkedladies.troop.models.Message;
-import com.linkedladies.troop.models.Results;
-import com.linkedladies.troop.net.TroopClient;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 public class MessageListFragment extends Fragment{
 
@@ -54,29 +49,15 @@ public class MessageListFragment extends Fragment{
         rvMessages.setLayoutManager(layoutManager);
 
         messages = new ArrayList<>();
+        messagesAdapter = new MessagesAdapter(messages);
+        rvMessages.setAdapter(messagesAdapter);
 
         return parent;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        TroopClient.getMessages(new Callback<Results>() {
-            @Override
-            public void success(Results results, Response response) {
-                messages.clear();
-                messages.addAll(results.getMessages());
-
-                if (messagesAdapter == null) {
-                    messagesAdapter = new MessagesAdapter(messages);
-                    rvMessages.setAdapter(messagesAdapter);
-                }
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                uiUtils.showToast(R.string.error_toast);
-            }
-        });
+    public void setMessages(List<Message> newMessages) {
+        messages.clear();
+        messages.addAll(newMessages);
+        messagesAdapter.notifyDataSetChanged();
     }
 }

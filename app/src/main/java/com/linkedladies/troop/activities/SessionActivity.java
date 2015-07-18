@@ -19,6 +19,8 @@ import retrofit.client.Response;
 
 public class SessionActivity extends AppCompatActivity {
 
+    private UIUtils uiUtils;
+
     private ActiveSessionFragment activeSessionFragment;
     private MessageListFragment messageListFragment;
 
@@ -27,6 +29,7 @@ public class SessionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session);
 
+        uiUtils = new UIUtils(this);
         activeSessionFragment = new ActiveSessionFragment();
         messageListFragment = new MessageListFragment();
 
@@ -53,11 +56,24 @@ public class SessionActivity extends AppCompatActivity {
             if (activeSessionFragment.isHidden()) {
                 ft.show(activeSessionFragment);
                 ft.hide(messageListFragment);
+                ft.commit();
             } else {
                 ft.hide(activeSessionFragment);
                 ft.show(messageListFragment);
+                ft.commit();
+
+                TroopClient.getMessages(new Callback<Results>() {
+                    @Override
+                    public void success(Results results, Response response) {
+                        messageListFragment.setMessages(results.getMessages());
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        uiUtils.showToast(R.string.error_toast);
+                    }
+                });
             }
-            ft.commit();
             return true;
         }
 
