@@ -4,6 +4,7 @@
     <!-- Actions -->
     <string name="action_get_started">Get Started</string>
     <string name="action_spotify_login">Login with Spotify</string>
+    <string name="action_start_session">Start Session</string>
     <string name="action_skip">Skip</string>
     <string name="action_love">Love</string>
     <string name="action_help">Help</string>
@@ -27,5 +28,8 @@
     <string name="help_success_toast">Asked for Help!</string>
     <string name="support_success_toast">Support Sent</string>
     <string name="recover_success_toast">You Recovered!</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>

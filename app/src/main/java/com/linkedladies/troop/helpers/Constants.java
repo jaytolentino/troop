@@ -4,6 +4,8 @@ import android.util.Log;
 
 public class Constants {
 
+    public static final String EXTRA_RECEIVER = "receiver";
+
     public enum UserState {
         NORMAL("normal"),
         REQUESTS_SUPPORT("requests support"),
@@ -13,7 +15,7 @@ public class Constants {
 
         private String prettyName;
 
-        private UserState(String prettyName) {
+        UserState(String prettyName) {
             this.prettyName = prettyName;
         }
 

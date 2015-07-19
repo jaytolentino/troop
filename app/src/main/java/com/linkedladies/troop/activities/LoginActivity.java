@@ -28,6 +28,6 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnSkip)
     public void onSkip() {
-        startActivity(new Intent(LoginActivity.this, SessionActivity.class));
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
     }
 }
