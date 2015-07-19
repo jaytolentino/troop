@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.linkedladies.troop.R;
+import com.linkedladies.troop.helpers.Utils;
 import com.linkedladies.troop.models.Message;
 
 import java.util.List;
@@ -32,6 +33,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         final Message message = messages.get(position);
         holder.tvMessagesType.setText(message.getMessageType());
+        holder.tvSender.setText(message.getSender());
+        holder.tvTime.setText(Utils.getInstance().getTimeSince(message.getTime()));
     }
 
     @Override
@@ -41,8 +44,12 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
 
     public static final class ViewHolder extends RecyclerView.ViewHolder{
 
+        @InjectView(R.id.tvSender)
+        TextView tvSender;
         @InjectView(R.id.tvMessageType)
         TextView tvMessagesType;
+        @InjectView(R.id.tvTime)
+        TextView tvTime;
 
         public ViewHolder(View itemView) {
             super(itemView);

@@ -17,8 +17,16 @@ public class Message implements Parcelable {
         this.time = in.readString();
     }
 
+    public String getSender() {
+        return sender;
+    }
+
     public String getMessageType() {
         return messageType;
+    }
+
+    public String getTime() {
+        return time;
     }
 
     @Override
