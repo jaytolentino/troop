@@ -1,10 +1,15 @@
 package com.linkedladies.troop.activities;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.linkedladies.troop.R;
 import com.linkedladies.troop.fragments.ActiveSessionFragment;
@@ -12,6 +17,7 @@ import com.linkedladies.troop.fragments.MessageListFragment;
 import com.linkedladies.troop.helpers.UIUtils;
 import com.linkedladies.troop.models.Results;
 import com.linkedladies.troop.net.TroopClient;
+import com.linkedladies.troop.push.GcmMessageHandler;
 
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -85,6 +91,20 @@ public class SessionActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onPause() {
+        unregisterReceiver(actionReceiver);
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        IntentFilter filter = new IntentFilter(GcmMessageHandler.PUSH_FILTER);
+        filter.setPriority(1);
+        registerReceiver(actionReceiver, filter);
+        super.onResume();
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         TroopClient.closeSession(new Callback<Results>() {
@@ -99,4 +119,11 @@ public class SessionActivity extends AppCompatActivity {
             }
         });
     }
+
+    final BroadcastReceiver actionReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Toast.makeText(SessionActivity.this, "Received push", Toast.LENGTH_SHORT).show();
+        }
+    };
 }

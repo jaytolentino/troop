@@ -19,15 +19,6 @@ public class Friend {
 
     private String state;
 
-    // TODO remove (temporary while waiting for backend release
-    public Friend(String userId, String firstName, String lastName, String imageUrl, String state) {
-        this.userId = userId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.imageUrl = imageUrl;
-        this.state = state;
-    }
-
     public Friend(String userid) {
         this.userId = userid;
     }
@@ -36,16 +27,8 @@ public class Friend {
         return Constants.UserState.fromString(state);
     }
 
-    public void setState(String state) {
-        this.state = state;
-    }
-
     public String getUserId() {
         return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     public String getFirstName() {

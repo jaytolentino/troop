@@ -4,8 +4,6 @@ import android.util.Log;
 
 public class Constants {
 
-    public static final String EXTRA_RECEIVER = "receiver";
-
     public enum UserState {
         NORMAL("normal"),
         REQUESTS_SUPPORT("requests support"),
@@ -32,7 +30,7 @@ public class Constants {
                 case "recoverable":
                     return RECOVERABLE;
                 default:
-                    Log.e(Constants.class.getSimpleName(), "Unrecognized UserState enum: " + name);
+                    Log.e(UserState.class.getSimpleName(), "Unrecognized UserState enum: " + name);
                     return NORMAL;
             }
         }
