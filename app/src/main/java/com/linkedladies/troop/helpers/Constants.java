@@ -4,6 +4,34 @@ import android.util.Log;
 
 public class Constants {
 
+    public enum SessionAction {
+        LOVE("Love"),
+        HELP("Help"),
+        RECOVER("Recover"),
+        SUPPORT("Support");
+
+        private String prettyName;
+
+        SessionAction(String prettyName) {
+            this.prettyName = prettyName;
+        }
+
+        public static SessionAction fromString(String name) {
+            for (SessionAction action : SessionAction.values()) {
+                if (action.toString().equals(name)) {
+                    return action;
+                }
+            }
+            throw new EnumConstantNotPresentException(SessionAction.class,
+                    "Could not find enum with name " + name);
+        }
+
+        @Override
+        public String toString() {
+            return prettyName;
+        }
+    }
+
     public enum UserState {
         NORMAL("normal"),
         REQUESTS_SUPPORT("requests support"),

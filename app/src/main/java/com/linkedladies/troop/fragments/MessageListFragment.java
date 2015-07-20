@@ -43,7 +43,7 @@ public class MessageListFragment extends Fragment{
         rvMessages.setLayoutManager(layoutManager);
 
         messages = new ArrayList<>();
-        messagesAdapter = new MessagesAdapter(messages);
+        messagesAdapter = new MessagesAdapter(getActivity(), messages);
         rvMessages.setAdapter(messagesAdapter);
 
         return parent;
